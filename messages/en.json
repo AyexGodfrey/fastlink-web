@@ -1,0 +1,171 @@
+{
+  "brand": {
+    "name": "Fast Link",
+    "full": "Fast Link International Logistics",
+    "tagline": "Connecting Global Markets Through Procurement and Logistics Excellence"
+  },
+  "nav": {
+    "services": "Services",
+    "industries": "Industries",
+    "tradeFinancing": "Trade Financing",
+    "knowledge": "Knowledge",
+    "track": "Track Shipment",
+    "calculate": "Import Cost",
+    "quote": "Request a Quote",
+    "sourcing": "Sourcing",
+    "contact": "Contact"
+  },
+  "home": {
+    "headline": "Connecting Global Markets Through Procurement and Logistics Excellence",
+    "sub": "Sourcing, procurement, supplier verification, freight forwarding, customs clearance, and door-to-door delivery worldwide.",
+    "ctaQuote": "Request a Quote",
+    "ctaCalculate": "Calculate Import Cost",
+    "ctaTrack": "Track Shipment",
+    "featuredTitle": "Our services",
+    "featuredBody": "Move cargo and source products with one accountable partner."
+  },
+  "trust": {
+    "shipments": "Shipments Managed",
+    "suppliers": "Suppliers Verified",
+    "countries": "Countries Served",
+    "onTime": "On-Time Delivery"
+  },
+  "footer": {
+    "offices": "Offices",
+    "china": "China Office",
+    "uganda": "Uganda Office",
+    "rights": "All rights reserved.",
+    "whatsapp": "WhatsApp",
+    "connectWithUs": "Connect With Us",
+    "explore": "Explore"
+  },
+  "track": {
+    "title": "Track a shipment",
+    "subtitle": "Enter your tracking, order, or container number.",
+    "placeholder": "Tracking / order / container number",
+    "search": "Track",
+    "notFound": "No shipment found for that number.",
+    "status": "Status",
+    "location": "Current location",
+    "destination": "Destination",
+    "history": "Shipment history"
+  },
+  "calculate": {
+    "title": "Import cost calculator",
+    "subtitle": "Get an indicative landed-cost estimate powered by live Fast Link rate cards and tariffs.",
+    "leadTitle": "Unlock your estimate",
+    "leadBody": "Share your details to view the full breakdown. Our team can refine this into a formal quotation.",
+    "submitLead": "Show my estimate",
+    "calculate": "Calculate",
+    "results": "Estimated landed cost",
+    "disclaimer": "Indicative only. Final quotation follows cargo inspection and official customs assessment.",
+    "products": "Products",
+    "productN": "Product {n}",
+    "addProduct": "Add product",
+    "removeProduct": "Remove",
+    "seaCbmHint": "Sea freight uses CBM from length × width × height. Shipment CBM:",
+    "lineCbm": "Line CBM",
+    "cbmLabel": "Total CBM",
+    "cbmUnit": "CBM",
+    "seaDimsRequired": "For sea cargo, enter length, width, and height (cm) for every product.",
+    "modeRequired": "Select a freight mode.",
+    "uploadTitle": "Upload packing list or commercial invoice",
+    "uploadNotice": "If you upload a packing list or commercial invoice, include columns for HS code, description, quantity, unit or total value (USD), weight (kg), and for sea cargo length / width / height (cm) or CBM. Missing HS codes will make duty estimates incomplete.",
+    "uploadHeaders": "Accepted headers include: HS Code, Description, Quantity, Unit Price / Total Value, Weight kg, Length cm, Width cm, Height cm, CBM.",
+    "uploadPacking": "Upload packing list",
+    "uploadInvoice": "Upload commercial invoice",
+    "downloadSample": "Download sample CSV",
+    "uploadSuccess": "Imported {count} product(s). Missing HS code on {missingHs} row(s). Review and edit before calculating.",
+    "uploadEmpty": "No product rows found. Check headers match the sample.",
+    "uploadError": "Could not read that file. Use CSV or Excel (.xlsx).",
+    "uploadPdfNote": "PDF and photo files cannot auto-fill product rows. Please upload CSV or Excel, or enter products manually."
+  },
+  "quote": {
+    "title": "Request a quote",
+    "subtitle": "Tell us what you need — our sales team responds with a tailored quotation.",
+    "submit": "Submit request",
+    "success": "Thank you. Your request has been sent to our sales team."
+  },
+  "sourcing": {
+    "title": "Product sourcing portal",
+    "subtitle": "Start a sourcing project with verified suppliers, factory audits, and end-to-end logistics.",
+    "submit": "Start sourcing project",
+    "success": "Your sourcing project request has been received."
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Speak with our teams in Guangzhou and Kampala.",
+    "hours": "Business hours",
+    "hoursValue": "Mon–Sat, 9:00–18:00 (local time)",
+    "formTitle": "Send a message",
+    "submit": "Send message",
+    "success": "Message sent. We will reply shortly."
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Procurement, verification, and logistics under one partner.",
+    "learnMore": "Learn more",
+    "carousel": "Services carousel",
+    "prev": "Previous service",
+    "next": "Next service"
+  },
+  "industries": {
+    "title": "Industries we serve",
+    "subtitle": "Sector expertise backed by real project experience.",
+    "projects": "Selected projects",
+    "learnMore": "Learn more",
+    "carousel": "Industries carousel",
+    "prev": "Previous industry",
+    "next": "Next industry"
+  },
+  "financing": {
+    "title": "Trade financing & payment solutions",
+    "subtitle": "Transaction security that goes beyond logistics.",
+    "learnMore": "Learn more",
+    "whatItCovers": "What this solution covers"
+  },
+  "knowledge": {
+    "title": "Knowledge Center",
+    "subtitle": "Guides on importing, PVoC, URA/UNBS clearance, shipping, and procurement.",
+    "search": "Search articles",
+    "readMore": "Read article"
+  },
+  "forms": {
+    "name": "Full name",
+    "company": "Company",
+    "email": "Email",
+    "phone": "Phone",
+    "country": "Country",
+    "productName": "Product name",
+    "productDescription": "Product description",
+    "productLink": "Product link",
+    "quantity": "Quantity",
+    "budget": "Budget",
+    "destinationCountry": "Destination country",
+    "shippingMethod": "Preferred shipping",
+    "deadline": "Delivery deadline",
+    "notes": "Additional notes",
+    "message": "Message",
+    "productValue": "Product value (USD)",
+    "weight": "Weight (kg)",
+    "length": "Length (cm)",
+    "width": "Width (cm)",
+    "height": "Height (cm)",
+    "hsCode": "HS code",
+    "hsCodeHint": "e.g. 8517.12",
+    "originCountry": "Origin country",
+    "destinationCity": "Destination city",
+    "insurance": "Include cargo insurance",
+    "mode": "Shipping method",
+    "modeAir": "Air",
+    "modeSea": "Sea",
+    "modeRoad": "Road",
+    "modeExpress": "Express"
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "back": "Back",
+    "loading": "Loading…",
+    "error": "Something went wrong. Please try again."
+  }
+}

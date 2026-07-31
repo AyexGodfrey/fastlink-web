@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fast Link International Logistics — Website
 
-## Getting Started
+Premium marketing + trade platform for Fast Link, integrated with **FLIMS** for shipment tracking, operator-managed freight/HS/tax rates, import-cost calculation, and CRM lead capture.
 
-First, run the development server:
+## Stack
+
+- Next.js 15 (App Router) + TypeScript + Tailwind CSS 4
+- Framer Motion, next-intl (EN/ZH), Resend (optional sales email)
+- FLIMS public APIs under `/api/v1/public/*`
+
+## Setup
 
 ```bash
+cp .env.example .env.local
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3200](http://localhost:3200) (redirects to `/en`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Purpose |
+|----------|---------|
+| `FLIMS_API_URL` | e.g. `http://127.0.0.1:4000/api/v1` |
+| `FLIMS_SITE_API_KEY` | Optional; must match FLIMS `WEBSITE_API_KEY` |
+| `FLIMS_COMPANY_CODE` | Default `FLI` |
+| `RESEND_API_KEY` / `SALES_INBOX` | Dual lead email (optional) |
+| `NEXT_PUBLIC_WHATSAPP` | WhatsApp deep link number |
 
-## Learn More
+Ensure FLIMS backend is running with seeded freight/HS/tax rates (Finance → Rates & Tariffs).
 
-To learn more about Next.js, take a look at the following resources:
+## Key routes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/en` — Homepage
+- `/en/track` — Parcel tracking (FLIMS public tracking)
+- `/en/calculate` — Import cost (lead-gated, FLIMS rates)
+- `/en/quote` · `/en/sourcing` · `/en/contact` — Leads → FLIMS CRM + email
+- `/en/services/*` · `/en/industries/*` · `/en/trade-financing` · `/en/knowledge/*`
+- Locale switcher: `/zh/...`

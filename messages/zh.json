@@ -1,0 +1,171 @@
+{
+  "brand": {
+    "name": "Fast Link",
+    "full": "Fast Link 国际物流",
+    "tagline": "以采购与物流卓越连接全球市场"
+  },
+  "nav": {
+    "services": "服务",
+    "industries": "行业",
+    "tradeFinancing": "贸易融资",
+    "knowledge": "知识中心",
+    "track": "货物追踪",
+    "calculate": "进口成本",
+    "quote": "获取报价",
+    "sourcing": "采购",
+    "contact": "联系我们"
+  },
+  "home": {
+    "headline": "以采购与物流卓越连接全球市场",
+    "sub": "提供寻源、采购管理、供应商审核、货运代理、清关及门到门交付服务。",
+    "ctaQuote": "获取报价",
+    "ctaCalculate": "计算进口成本",
+    "ctaTrack": "追踪货物",
+    "featuredTitle": "我们的服务",
+    "featuredBody": "货运与采购，由同一可靠伙伴负责到底。"
+  },
+  "trust": {
+    "shipments": "管理货运",
+    "suppliers": "已核验供应商",
+    "countries": "服务国家",
+    "onTime": "准时交付"
+  },
+  "footer": {
+    "offices": "办公室",
+    "china": "中国办公室",
+    "uganda": "乌干达办公室",
+    "rights": "版权所有。",
+    "whatsapp": "WhatsApp",
+    "connectWithUs": "关注我们",
+    "explore": "探索"
+  },
+  "track": {
+    "title": "货物追踪",
+    "subtitle": "输入追踪号、订单号或集装箱号。",
+    "placeholder": "追踪号 / 订单号 / 集装箱号",
+    "search": "查询",
+    "notFound": "未找到该编号的货物。",
+    "status": "状态",
+    "location": "当前位置",
+    "destination": "目的地",
+    "history": "运输记录"
+  },
+  "calculate": {
+    "title": "进口成本计算器",
+    "subtitle": "基于 Fast Link 实时运费与关税数据估算落地成本。",
+    "leadTitle": "解锁估算结果",
+    "leadBody": "填写联系方式以查看明细，我们的团队可据此出具正式报价。",
+    "submitLead": "查看估算",
+    "calculate": "计算",
+    "results": "预估落地成本",
+    "disclaimer": "仅供参考。最终报价以货物查验及官方海关评估为准。",
+    "products": "产品明细",
+    "productN": "产品 {n}",
+    "addProduct": "添加产品",
+    "removeProduct": "移除",
+    "seaCbmHint": "海运按长×宽×高计算 CBM。本票货物 CBM：",
+    "lineCbm": "本行 CBM",
+    "cbmLabel": "合计 CBM",
+    "cbmUnit": "立方",
+    "seaDimsRequired": "海运请为每一行产品填写长、宽、高（厘米）。",
+    "modeRequired": "请选择运输方式。",
+    "uploadTitle": "上传装箱单或商业发票",
+    "uploadNotice": "若上传装箱单或商业发票，请包含列：HS 编码、品名、数量、单价或总价（美元）、重量（公斤），海运还需长/宽/高（厘米）或 CBM。缺少 HS 编码将影响关税估算。",
+    "uploadHeaders": "可识别表头示例：HS Code、Description、Quantity、Unit Price / Total Value、Weight kg、Length cm、Width cm、Height cm、CBM。",
+    "uploadPacking": "上传装箱单",
+    "uploadInvoice": "上传商业发票",
+    "downloadSample": "下载示例 CSV",
+    "uploadSuccess": "已导入 {count} 个产品；其中 {missingHs} 行缺少 HS 编码。计算前请核对并修改。",
+    "uploadEmpty": "未识别到产品行，请对照示例检查表头。",
+    "uploadError": "无法读取该文件，请使用 CSV 或 Excel（.xlsx）。",
+    "uploadPdfNote": "PDF 与图片无法自动填充产品行。请上传 CSV/Excel，或手动录入。"
+  },
+  "quote": {
+    "title": "获取报价",
+    "subtitle": "告诉我们您的需求，销售团队将提供定制报价。",
+    "submit": "提交请求",
+    "success": "感谢您。请求已发送至销售团队。"
+  },
+  "sourcing": {
+    "title": "产品采购门户",
+    "subtitle": "通过核验供应商、工厂审核与端到端物流启动采购项目。",
+    "submit": "启动采购项目",
+    "success": "您的采购项目请求已收到。"
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "联系广州与坎帕拉团队。",
+    "hours": "营业时间",
+    "hoursValue": "周一至周六 9:00–18:00（当地时间）",
+    "formTitle": "发送消息",
+    "submit": "发送",
+    "success": "消息已发送，我们将尽快回复。"
+  },
+  "services": {
+    "title": "服务",
+    "subtitle": "采购、核验与物流，一站式伙伴。",
+    "learnMore": "了解更多",
+    "carousel": "服务轮播",
+    "prev": "上一项服务",
+    "next": "下一项服务"
+  },
+  "industries": {
+    "title": "服务行业",
+    "subtitle": "以真实项目经验支持各行业需求。",
+    "projects": "精选项目",
+    "learnMore": "了解更多",
+    "carousel": "行业轮播",
+    "prev": "上一个行业",
+    "next": "下一个行业"
+  },
+  "financing": {
+    "title": "贸易融资与支付方案",
+    "subtitle": "超越物流的交易安全保障。",
+    "learnMore": "了解更多",
+    "whatItCovers": "方案涵盖内容"
+  },
+  "knowledge": {
+    "title": "知识中心",
+    "subtitle": "进口、PVoC、URA/UNBS 清关、运输与采购指南。",
+    "search": "搜索文章",
+    "readMore": "阅读文章"
+  },
+  "forms": {
+    "name": "姓名",
+    "company": "公司",
+    "email": "邮箱",
+    "phone": "电话",
+    "country": "国家",
+    "productName": "产品名称",
+    "productDescription": "产品描述",
+    "productLink": "产品链接",
+    "quantity": "数量",
+    "budget": "预算",
+    "destinationCountry": "目的国",
+    "shippingMethod": "首选运输方式",
+    "deadline": "交货期限",
+    "notes": "备注",
+    "message": "留言",
+    "productValue": "货值（美元）",
+    "weight": "重量（公斤）",
+    "length": "长（厘米）",
+    "width": "宽（厘米）",
+    "height": "高（厘米）",
+    "hsCode": "海关编码",
+    "hsCodeHint": "例如 8517.12",
+    "originCountry": "原产国",
+    "destinationCity": "目的城市",
+    "insurance": "含货运保险",
+    "mode": "运输方式",
+    "modeAir": "空运",
+    "modeSea": "海运",
+    "modeRoad": "公路",
+    "modeExpress": "快递"
+  },
+  "common": {
+    "learnMore": "了解更多",
+    "back": "返回",
+    "loading": "加载中…",
+    "error": "出错了，请重试。"
+  }
+}

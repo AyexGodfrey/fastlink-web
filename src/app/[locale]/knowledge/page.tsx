@@ -1,0 +1,22 @@
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { KnowledgeSearch } from "@/components/knowledge/KnowledgeSearch";
+
+export default async function KnowledgePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("knowledge");
+
+  return (
+    <div className="container-site py-14 md:py-20">
+      <h1 className="section-title">{t("title")}</h1>
+      <p className="section-sub">{t("subtitle")}</p>
+      <div className="mt-10">
+        <KnowledgeSearch />
+      </div>
+    </div>
+  );
+}
