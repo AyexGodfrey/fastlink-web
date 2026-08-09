@@ -1,4 +1,4 @@
-import type { ImportCostResult } from "@/lib/flims";
+import type { ImportCostResult } from "@/lib/amgims";
 import {
   dimsFromTotalCbm,
   totalCbmForLine,
@@ -18,7 +18,11 @@ export type CargoGroupPayload = {
   destinationCountry: string;
   destinationCity?: string;
   insurance: boolean;
+  /** Results display currency */
   currency: string;
+  operatingCurrency: string;
+  displayCurrency: string;
+  taxExemption?: "NONE" | "VAT_EXEMPT" | "FULLY_EXEMPT";
 };
 
 function normalizeHs(hs: string) {
@@ -45,9 +49,16 @@ export function aggregateGroup(
     destinationCountry: string;
     destinationCity?: string;
     insurance: boolean;
+    displayCurrency: string;
+    taxExemption?: "NONE" | "VAT_EXEMPT" | "FULLY_EXEMPT";
   },
 ): CargoGroupPayload {
-  const productValue = lines.reduce((s, p) => s + Number(p.productValue || 0), 0);
+  const productValue = lines.reduce(
+    (s, p) =>
+      s +
+      Number(p.productValue || 0) * Math.max(1, Number(p.quantity) || 1),
+    0,
+  );
   const actualWeightKg = lines.reduce(
     (s, p) => s + Number(p.actualWeightKg || 0) * Math.max(1, Number(p.quantity) || 1),
     0,
@@ -69,7 +80,10 @@ export function aggregateGroup(
     destinationCountry: shared.destinationCountry,
     destinationCity: shared.destinationCity,
     insurance: shared.insurance,
-    currency: "USD",
+    currency: shared.displayCurrency,
+    operatingCurrency: "USD",
+    displayCurrency: shared.displayCurrency,
+    taxExemption: shared.taxExemption || "NONE",
   };
 }
 
@@ -86,8 +100,16 @@ export function sumImportResults(results: ImportCostResult[]): ImportCostResult 
     .map((r) => r.estimatedTransitDays?.max)
     .filter((n): n is number => n != null);
 
+  const first = results[0];
   return {
     currency,
+    operatingCurrency: first.operatingCurrency,
+    displayCurrency: first.displayCurrency ?? currency,
+    displayExchangeRate: first.displayExchangeRate ?? first.exchangeRate ?? null,
+    displayExchangeRateSource:
+      first.displayExchangeRateSource ?? first.exchangeRateSource ?? null,
+    exchangeRate: first.exchangeRate ?? null,
+    exchangeRateSource: first.exchangeRateSource ?? null,
     estimatedFreightCost: round2(
       results.reduce((s, r) => s + r.estimatedFreightCost, 0),
     ),
@@ -108,10 +130,13 @@ export function sumImportResults(results: ImportCostResult[]): ImportCostResult 
     productValue: round2(results.reduce((s, r) => s + r.productValue, 0)),
     cif: round2(results.reduce((s, r) => s + r.cif, 0)),
     lines,
-    disclaimer: results[0].disclaimer,
-    hsCode: results.length === 1 ? results[0].hsCode : null,
-    hsDescription: results.length === 1 ? results[0].hsDescription : null,
+    disclaimer: first.disclaimer,
+    hsCode: results.length === 1 ? first.hsCode : null,
+    hsDescription: results.length === 1 ? first.hsDescription : null,
     cbm: round3(results.reduce((s, r) => s + (r.cbm || 0), 0)),
+    chargeableWeightKg: round3(
+      results.reduce((s, r) => s + (r.chargeableWeightKg || 0), 0),
+    ),
   };
 }
 

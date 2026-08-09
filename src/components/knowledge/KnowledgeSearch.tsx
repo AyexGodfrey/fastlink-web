@@ -42,7 +42,7 @@ export function KnowledgeSearch() {
           <Link
             key={a.slug}
             href={`/knowledge/${a.slug}`}
-            className="block border border-[color:var(--line)] bg-white p-6 transition-shadow hover:shadow-[0_12px_40px_rgba(15,45,74,0.08)]"
+            className="block rounded-xl border border-[color:var(--line)] bg-white p-6 transition-shadow hover:shadow-[0_12px_40px_rgba(15,45,74,0.08)]"
           >
             <div className="text-xs font-semibold uppercase tracking-wider text-[color:var(--gold)]">
               {a.category}

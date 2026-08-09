@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { flimsHsCodes } from "@/lib/flims";
+import { amgimsHsCodes } from "@/lib/amgims";
 
 export async function GET(req: NextRequest) {
   try {
     const q = req.nextUrl.searchParams.get("q") || "";
     const country = req.nextUrl.searchParams.get("country") || undefined;
-    const data = await flimsHsCodes(q, country);
+    const data = await amgimsHsCodes(q, country);
     return NextResponse.json({ data });
   } catch (e) {
     const message = e instanceof Error ? e.message : "HS lookup failed";

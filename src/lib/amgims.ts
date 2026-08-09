@@ -1,9 +1,9 @@
-const FLIMS_API_URL =
-  process.env.FLIMS_API_URL || "http://127.0.0.1:4000/api/v1";
-const FLIMS_SITE_API_KEY = process.env.FLIMS_SITE_API_KEY || "";
-const FLIMS_COMPANY_CODE = process.env.FLIMS_COMPANY_CODE || "FLI";
+const AMGIMS_API_URL =
+  process.env.AMGIMS_API_URL || "http://127.0.0.1:4000/api/v1";
+const AMGIMS_SITE_API_KEY = process.env.AMGIMS_SITE_API_KEY || "";
+const AMGIMS_COMPANY_CODE = process.env.AMGIMS_COMPANY_CODE || "AMG";
 
-type FlimsEnvelope<T> = {
+type AmgimsEnvelope<T> = {
   success?: boolean;
   data: T;
   message?: unknown;
@@ -15,7 +15,7 @@ function headers(): HeadersInit {
     "Content-Type": "application/json",
     Accept: "application/json",
   };
-  if (FLIMS_SITE_API_KEY) h["x-site-api-key"] = FLIMS_SITE_API_KEY;
+  if (AMGIMS_SITE_API_KEY) h["x-site-api-key"] = AMGIMS_SITE_API_KEY;
   return h;
 }
 
@@ -37,15 +37,15 @@ function errorMessage(value: unknown, fallback: string): string {
   return fallback;
 }
 
-async function flimsFetch<T>(
+async function amgimsFetch<T>(
   path: string,
   init?: RequestInit,
   query?: Record<string, string | undefined>,
 ): Promise<T> {
-  const base = FLIMS_API_URL.replace(/\/$/, "");
+  const base = AMGIMS_API_URL.replace(/\/$/, "");
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
   const url = new URL(`${base}${cleanPath}`);
-  url.searchParams.set("company", FLIMS_COMPANY_CODE);
+  url.searchParams.set("company", AMGIMS_COMPANY_CODE);
   if (query) {
     for (const [key, value] of Object.entries(query)) {
       if (value != null && value !== "") url.searchParams.set(key, value);
@@ -57,19 +57,19 @@ async function flimsFetch<T>(
     cache: "no-store",
   });
   const text = await res.text();
-  let json = {} as FlimsEnvelope<T>;
+  let json = {} as AmgimsEnvelope<T>;
   try {
-    json = text ? (JSON.parse(text) as FlimsEnvelope<T>) : ({} as FlimsEnvelope<T>);
+    json = text ? (JSON.parse(text) as AmgimsEnvelope<T>) : ({} as AmgimsEnvelope<T>);
   } catch {
     throw new Error(
-      `FLIMS returned non-JSON (${res.status}): ${text.slice(0, 120)}`,
+      `AMGIMS returned non-JSON (${res.status}): ${text.slice(0, 120)}`,
     );
   }
   if (!res.ok) {
     throw new Error(
       errorMessage(
         json.message ?? json.error,
-        `FLIMS error ${res.status}`,
+        `AMGIMS error ${res.status}`,
       ),
     );
   }
@@ -93,6 +93,12 @@ export type PublicTracking = {
 
 export type ImportCostResult = {
   currency: string;
+  operatingCurrency?: string;
+  displayCurrency?: string;
+  displayExchangeRate?: number | null;
+  displayExchangeRateSource?: string | null;
+  exchangeRate?: number | null;
+  exchangeRateSource?: string | null;
   estimatedFreightCost: number;
   estimatedCustomsDuty: number;
   estimatedTaxes: number;
@@ -112,21 +118,61 @@ export type ImportCostResult = {
   hsDescription?: string | null;
 };
 
-export async function flimsTrack(trackingNumber: string) {
-  return flimsFetch<PublicTracking>(
+export async function amgimsTrack(trackingNumber: string) {
+  return amgimsFetch<PublicTracking>(
     `/public/tracking/${encodeURIComponent(trackingNumber)}`,
   );
 }
 
-export async function flimsImportCost(body: Record<string, unknown>) {
-  return flimsFetch<ImportCostResult>("/public/import-cost/calculate", {
+export async function amgimsImportCost(body: Record<string, unknown>) {
+  return amgimsFetch<ImportCostResult>("/public/import-cost/calculate", {
     method: "POST",
     body: JSON.stringify(body),
   });
 }
 
-export async function flimsHsCodes(q: string, country?: string) {
-  return flimsFetch<
+export type HsClassifyCandidate = {
+  hsCode: string;
+  description: string;
+  confidence: number;
+  importDutyRate: number | null;
+  matchedKeywords: string[];
+  matchedPhrases: string[];
+  matchReasons: string[];
+};
+
+export type HsClassifyResult = {
+  autoAccepted: boolean;
+  suggestedHSCode: string | null;
+  confidence: number;
+  requiresChoice: boolean;
+  candidates: HsClassifyCandidate[];
+  matchedKeywords: string[];
+  canOverride: boolean;
+};
+
+export async function amgimsClassifyHs(description: string, country: string) {
+  return amgimsFetch<HsClassifyResult>("/public/hs-codes/classify", {
+    method: "POST",
+    body: JSON.stringify({ description, country }),
+  });
+}
+
+export async function amgimsClassifyOverride(body: {
+  description: string;
+  country: string;
+  suggestedHsCode?: string | null;
+  selectedHsCode: string;
+  confidence?: number;
+}) {
+  return amgimsFetch<unknown>("/public/hs-codes/classify/override", {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
+}
+
+export async function amgimsHsCodes(q: string, country?: string) {
+  return amgimsFetch<
     Array<{ hsCode: string; description: string; dutyPercent: number }>
   >("/public/hs-codes", undefined, { q: q || undefined, country });
 }
@@ -136,17 +182,17 @@ export type FreightModeOption = {
   label: string;
 };
 
-export async function flimsFreightModes(
+export async function amgimsFreightModes(
   originCountry?: string,
   destinationCountry?: string,
 ) {
-  return flimsFetch<FreightModeOption[]>("/public/freight-modes", undefined, {
+  return amgimsFetch<FreightModeOption[]>("/public/freight-modes", undefined, {
     originCountry,
     destinationCountry,
   });
 }
 
-export async function flimsCreateLead(body: {
+export async function amgimsCreateLead(body: {
   type: "QUOTE" | "SOURCING" | "IMPORT_COST" | "CONTACT";
   name: string;
   email?: string;
@@ -155,8 +201,25 @@ export async function flimsCreateLead(body: {
   country?: string;
   payload: Record<string, unknown>;
 }) {
-  return flimsFetch<{ id: string }>("/public/leads", {
+  return amgimsFetch<{ id: string }>("/public/leads", {
     method: "POST",
     body: JSON.stringify(body),
+  });
+}
+
+export async function amgimsIngestAnalytics(
+  events: Array<{
+    eventName: string;
+    path?: string;
+    locale?: string;
+    sessionId?: string;
+    referrer?: string;
+    userAgent?: string;
+    props?: Record<string, unknown>;
+  }>,
+) {
+  return amgimsFetch<{ accepted: number }>("/public/analytics/events", {
+    method: "POST",
+    body: JSON.stringify({ events }),
   });
 }

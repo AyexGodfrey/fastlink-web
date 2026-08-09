@@ -49,7 +49,7 @@ export default async function IndustryDetailPage({
         {industry.projects.map((p) => (
           <div
             key={p.name}
-            className="border-l-2 border-[color:var(--gold)] bg-white px-5 py-4"
+            className="rounded-xl border-l-2 border-[color:var(--gold)] bg-white px-5 py-4"
           >
             <h3 className="font-semibold text-[color:var(--navy)]">
               {zh ? p.nameZh : p.name}

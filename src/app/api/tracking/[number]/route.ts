@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { flimsTrack } from "@/lib/flims";
+import { amgimsTrack } from "@/lib/amgims";
 
 export async function GET(
   _req: NextRequest,
@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const { number } = await ctx.params;
-    const data = await flimsTrack(number);
+    const data = await amgimsTrack(number);
     return NextResponse.json({ data });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Tracking failed";

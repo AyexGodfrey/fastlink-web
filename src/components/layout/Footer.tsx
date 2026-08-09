@@ -1,44 +1,64 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 function socialLinks() {
   const wa = process.env.NEXT_PUBLIC_WHATSAPP || "256707469261";
+  const email =
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL ||
+    process.env.SALES_INBOX ||
+    "sales@amginternationallogistics.com";
+
   return [
+    {
+      key: "instagram",
+      label: "Instagram",
+      href:
+        process.env.NEXT_PUBLIC_INSTAGRAM_URL ||
+        "https://www.instagram.com/amginternationallogistics",
+      color: "#E4405F",
+    },
     {
       key: "facebook",
       label: "Facebook",
-      href: process.env.NEXT_PUBLIC_FACEBOOK_URL || "",
+      href:
+        process.env.NEXT_PUBLIC_FACEBOOK_URL ||
+        "https://www.facebook.com/amginternationallogistics",
       color: "#1877F2",
     },
     {
       key: "x",
       label: "X",
-      href: process.env.NEXT_PUBLIC_X_URL || "",
+      href:
+        process.env.NEXT_PUBLIC_X_URL ||
+        "https://x.com/amginternationallogistics",
       color: "#ffffff",
-    },
-    {
-      key: "youtube",
-      label: "YouTube",
-      href: process.env.NEXT_PUBLIC_YOUTUBE_URL || "",
-      color: "#FF0000",
-    },
-    {
-      key: "instagram",
-      label: "Instagram",
-      href: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "",
-      color: "#E4405F",
     },
     {
       key: "linkedin",
       label: "LinkedIn",
-      href: process.env.NEXT_PUBLIC_LINKEDIN_URL || "",
+      href:
+        process.env.NEXT_PUBLIC_LINKEDIN_URL ||
+        "https://www.linkedin.com/company/amg-international-logistics",
       color: "#0A66C2",
+    },
+    {
+      key: "gmail",
+      label: "Gmail",
+      href: `mailto:${email}`,
+      color: "#EA4335",
     },
     {
       key: "whatsapp",
       label: "WhatsApp",
       href: `https://wa.me/${wa}`,
       color: "#25D366",
+    },
+    {
+      key: "youtube",
+      label: "YouTube",
+      href: process.env.NEXT_PUBLIC_YOUTUBE_URL || "",
+      color: "#FF0000",
     },
   ].filter((s) => Boolean(s.href));
 }
@@ -88,6 +108,42 @@ function SocialIcon({ name }: { name: string }) {
           <path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.1.2-.3.2-.5.1-1.4-.6-2.6-1.7-3.4-3.1-.1-.2 0-.4.1-.5.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4 0-.1 0-.3-.1-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4 1.4.6 2 .6 2.7.5.4-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z" />
         </svg>
       );
+    case "gmail":
+      return (
+        <svg
+          width={22}
+          height={22}
+          viewBox="0 0 24 24"
+          aria-hidden
+          className="overflow-visible"
+        >
+          <defs>
+            <linearGradient
+              id="gmail-m-grad"
+              x1="3"
+              y1="4"
+              x2="21"
+              y2="20"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#EA4335" />
+              <stop offset="28%" stopColor="#EA4335" />
+              <stop offset="45%" stopColor="#FBBC04" />
+              <stop offset="62%" stopColor="#34A853" />
+              <stop offset="82%" stopColor="#4285F4" />
+              <stop offset="100%" stopColor="#4285F4" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M4.75 19.25V5.85c0-.55.62-.88 1.06-.56L12 10.4l6.19-5.11c.44-.32 1.06.01 1.06.56v13.4"
+            fill="none"
+            stroke="url(#gmail-m-grad)"
+            strokeWidth={3.1}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
     default:
       return null;
   }
@@ -103,10 +159,14 @@ export async function Footer() {
     <footer className="mt-24 bg-[color:var(--navy-deep)] text-white">
       <div className="container-site grid gap-10 py-14 md:grid-cols-3">
         <div>
-          <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--gold-soft)]">
-            Fast Link
-          </div>
-          <h3 className="mt-2 text-xl font-light">{tb("full")}</h3>
+          <Image
+            src="/images/amg-logo-on-dark.png"
+            alt={tb("full")}
+            width={160}
+            height={96}
+            className="h-12 w-auto object-contain"
+          />
+          <h3 className="mt-4 text-xl font-light">{tb("full")}</h3>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/70">
             {tb("tagline")}
           </p>
@@ -131,7 +191,9 @@ export async function Footer() {
               <div className="font-semibold text-[color:var(--gold-soft)]">
                 {t("uganda")}
               </div>
-              <p className="mt-1">Bweyogerere, Butto, Kampala, Uganda</p>
+              <p className="mt-1">
+                Gyagenda Plaza, Room 007, Bweyogerere, Kyobe Rd, Kampala, Uganda
+              </p>
               <p className="mt-1">+256 707 469 261</p>
             </div>
           </div>
@@ -181,11 +243,13 @@ export async function Footer() {
                 <a
                   key={s.key}
                   href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
+                  target={s.key === "gmail" ? undefined : "_blank"}
+                  rel={s.key === "gmail" ? undefined : "noreferrer"}
                   aria-label={s.label}
+                  data-analytics="social_click"
+                  data-analytics-label={s.label}
                   className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-                  style={{ color: s.color }}
+                  style={s.key === "gmail" ? undefined : { color: s.color }}
                 >
                   <SocialIcon name={s.key} />
                 </a>

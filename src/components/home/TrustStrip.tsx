@@ -38,12 +38,20 @@ export function TrustStrip() {
     <section className="relative -mt-6 pb-8">
       <div className="container-site">
         <Reveal>
-          <div className="bg-white px-5 py-8 shadow-[0_20px_60px_rgba(15,45,74,0.08)] md:px-8 md:py-10">
+          <div className="rounded-xl bg-white px-5 py-8 shadow-[0_20px_60px_rgba(15,45,74,0.08)] md:px-8 md:py-10">
             <div className="mb-6 max-w-2xl md:mb-8">
               <h2 className="section-title text-[1.75rem] md:text-[2rem]">
                 {t("featuredTitle")}
               </h2>
-              <p className="section-sub">{t("featuredBody")}</p>
+              <p className="section-sub">
+                {t.rich("featuredBody", {
+                  bold: (chunks) => (
+                    <strong className="font-semibold text-[color:var(--navy)]">
+                      {chunks}
+                    </strong>
+                  ),
+                })}
+              </p>
             </div>
             <div className="grid gap-4 md:grid-cols-3 md:gap-0 md:divide-x md:divide-[color:var(--line)]">
               {featured.map((item) => (
@@ -53,7 +61,7 @@ export function TrustStrip() {
                   className="group block px-1 py-3 transition-colors md:px-6 md:py-2 first:md:pl-0 last:md:pr-0"
                 >
                   <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--gold)]">
-                    Fast Link
+                    AMG
                   </div>
                   <h3 className="mt-2 text-xl font-semibold text-[color:var(--navy)] group-hover:text-[color:var(--navy-light)]">
                     {zh ? item.titleZh : item.title}

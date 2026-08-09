@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { services } from "@/lib/content/services";
@@ -16,17 +17,21 @@ export function Header() {
   const otherLocale = locale === "en" ? "zh" : "en";
   const navItemClass =
     "rounded-sm px-2.5 py-1.5 text-sm text-white/90 transition-colors hover:bg-white/10 hover:text-white";
+  const trackHref = "/track";
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[color:var(--navy-deep)]/95 text-white backdrop-blur-md">
       <div className="container-site flex h-16 items-center justify-between gap-4 md:h-[4.25rem]">
-        <Link href="/" className="min-w-0 shrink-0">
-          <div className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--gold-soft)]">
-            Fast Link
-          </div>
-          <div className="truncate text-sm font-light tracking-wide md:text-base">
-            {tb("full")}
-          </div>
+        <Link href="/" className="flex min-w-0 shrink-0 items-center gap-3">
+          <Image
+            src="/images/amg-logo-on-dark.png"
+            alt={tb("full")}
+            width={140}
+            height={84}
+            className="h-10 w-auto object-contain md:h-11"
+            priority
+          />
+          <span className="sr-only">{tb("full")}</span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
@@ -44,7 +49,7 @@ export function Header() {
               <span className="text-[0.65rem]">▾</span>
             </button>
             {servicesOpen && (
-              <div className="absolute left-0 top-full z-50 w-[min(52rem,90vw)] min-w-[40rem] border border-white/10 bg-[color:var(--navy)] py-3 shadow-2xl">
+              <div className="absolute left-0 top-full z-50 w-[min(52rem,90vw)] min-w-[40rem] rounded-xl border border-white/10 bg-[color:var(--navy)] py-3 shadow-2xl">
                 <Link
                   href="/services"
                   className="block px-4 py-2 text-sm font-semibold text-[color:var(--gold-soft)] hover:bg-white/10"
@@ -67,22 +72,22 @@ export function Header() {
               </div>
             )}
           </div>
-          <Link href="/industries" className={navItemClass}>
+          <Link href="/industries" className={navItemClass} data-analytics="nav_click" data-analytics-label="Industries">
             {t("industries")}
           </Link>
-          <Link href="/trade-financing" className={navItemClass}>
+          <Link href="/trade-financing" className={navItemClass} data-analytics="nav_click" data-analytics-label="Trade Financing">
             {t("tradeFinancing")}
           </Link>
-          <Link href="/knowledge" className={navItemClass}>
+          <Link href="/knowledge" className={navItemClass} data-analytics="nav_click" data-analytics-label="Knowledge">
             {t("knowledge")}
           </Link>
-          <Link href="/calculate" className={navItemClass}>
+          <Link href="/calculate" className={navItemClass} data-analytics="nav_click" data-analytics-label="Import Cost">
             {t("calculate")}
           </Link>
-          <Link href="/track" className={navItemClass}>
+          <Link href={trackHref} className={navItemClass} data-analytics="nav_click" data-analytics-label="Track">
             {t("track")}
           </Link>
-          <Link href="/contact" className={navItemClass}>
+          <Link href="/contact" className={navItemClass} data-analytics="nav_click" data-analytics-label="Contact">
             {t("contact")}
           </Link>
         </nav>
@@ -91,19 +96,21 @@ export function Header() {
           <Link
             href={pathname}
             locale={otherLocale}
-            className="hidden rounded-none border border-white/25 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-white/90 hover:border-white sm:inline"
+            className="hidden rounded-xl border border-white/25 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-white/90 hover:border-white sm:inline"
           >
             {otherLocale === "zh" ? "中文" : "EN"}
           </Link>
           <Link
             href="/quote"
-            className="hidden bg-[color:var(--gold)] px-3 py-2 text-xs font-bold text-[color:var(--navy-deep)] hover:bg-[color:var(--gold-soft)] md:inline-flex"
+            className="hidden rounded-xl bg-[color:var(--gold)] px-3 py-2 text-xs font-bold text-[color:var(--navy-deep)] hover:bg-[color:var(--gold-soft)] md:inline-flex"
+            data-analytics="cta_click"
+            data-analytics-label="Request a Quote"
           >
             {t("quote")}
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center border border-white/20 lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 lg:hidden"
             aria-label="Menu"
             onClick={() => setOpen((v) => !v)}
           >
@@ -140,7 +147,7 @@ export function Header() {
             <Link href="/calculate" onClick={() => setOpen(false)} className="py-2 text-sm">
               {t("calculate")}
             </Link>
-            <Link href="/track" onClick={() => setOpen(false)} className="py-2 text-sm">
+            <Link href={trackHref} onClick={() => setOpen(false)} className="py-2 text-sm">
               {t("track")}
             </Link>
             <Link href="/sourcing" onClick={() => setOpen(false)} className="py-2 text-sm">

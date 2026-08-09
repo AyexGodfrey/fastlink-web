@@ -63,6 +63,7 @@ body {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.85rem 1.35rem;
+  border-radius: 0.75rem;
   background: var(--gold);
   color: var(--navy-deep);
   font-weight: 700;
@@ -81,6 +82,7 @@ body {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.85rem 1.35rem;
+  border-radius: 0.75rem;
   border: 1px solid rgba(255, 255, 255, 0.55);
   color: white;
   font-weight: 600;
@@ -98,6 +100,7 @@ body {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.85rem 1.35rem;
+  border-radius: 0.75rem;
   border: 1px solid var(--line);
   color: var(--navy);
   font-weight: 600;
@@ -112,6 +115,7 @@ body {
 .field {
   width: 100%;
   border: 1px solid var(--line);
+  border-radius: 0.75rem;
   background: white;
   padding: 0.8rem 0.95rem;
   color: var(--ink);
@@ -144,6 +148,48 @@ body {
   color: var(--muted);
   max-width: 40rem;
   line-height: 1.6;
+}
+
+.calc-compact .field {
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.calc-compact .label {
+  font-size: 0.7rem;
+  margin-bottom: 0.15rem;
+}
+
+.calc-compact .btn-primary {
+  width: 100%;
+  padding: 0.55rem 1rem;
+  border-radius: 0.65rem;
+  font-size: 0.9rem;
+}
+
+.calc-compact .btn-ghost {
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* Lead forms (quote etc.): compact but more readable than calc-compact */
+.form-compact .field {
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.65rem;
+  font-size: 0.9375rem;
+}
+
+.form-compact .label {
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-compact .btn-primary {
+  padding: 0.6rem 1.15rem;
+  border-radius: 0.7rem;
+  font-size: 0.9375rem;
 }
 
 .hero-grain {

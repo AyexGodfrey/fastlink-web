@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { AnalyticsProvider } from "@/components/analytics/AnalyticsProvider";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -23,9 +24,11 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <Header />
-      <main>{children}</main>
-      <Footer />
+      <AnalyticsProvider>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </AnalyticsProvider>
     </NextIntlClientProvider>
   );
 }

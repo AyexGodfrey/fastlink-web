@@ -236,11 +236,11 @@ export function emptyProductLine(): ProductLine {
     id: newId(),
     description: "",
     hsCode: "",
-    productValue: 1000,
+    productValue: 0,
     quantity: 1,
-    actualWeightKg: 50,
-    lengthCm: 60,
-    widthCm: 40,
-    heightCm: 40,
+    actualWeightKg: 0,
+    lengthCm: 0,
+    widthCm: 0,
+    heightCm: 0,
   };
 }

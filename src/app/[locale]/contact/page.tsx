@@ -18,7 +18,7 @@ export default async function ContactPage({
 
       <div className="mt-10 grid gap-10 lg:grid-cols-2">
         <div className="space-y-8">
-          <div className="bg-white p-6 shadow-[0_10px_40px_rgba(15,45,74,0.06)]">
+          <div className="rounded-xl bg-white p-6 shadow-[0_10px_40px_rgba(15,45,74,0.06)]">
             <h2 className="text-lg font-semibold text-[color:var(--navy)]">
               {tf("china")}
             </h2>
@@ -31,18 +31,18 @@ export default async function ContactPage({
             </p>
             <iframe
               title="China office map"
-              className="mt-4 h-48 w-full border-0 grayscale"
+              className="mt-4 h-48 w-full rounded-xl border-0 grayscale"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               src="https://www.google.com/maps?q=Wanda+Office+Area+Baiyun+Guangzhou&output=embed"
             />
           </div>
-          <div className="bg-white p-6 shadow-[0_10px_40px_rgba(15,45,74,0.06)]">
+          <div className="rounded-xl bg-white p-6 shadow-[0_10px_40px_rgba(15,45,74,0.06)]">
             <h2 className="text-lg font-semibold text-[color:var(--navy)]">
               {tf("uganda")}
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-[color:var(--muted)]">
-              Bweyogerere, Butto, Kampala, Uganda
+              Gyagenda Plaza, Room 007, Bweyogerere, Kyobe Rd, Kampala, Uganda
             </p>
             <p className="mt-2 text-sm text-[color:var(--navy)]">
               +256 707 469 261 · +86 136 6053 4638
@@ -55,10 +55,10 @@ export default async function ContactPage({
             </p>
             <iframe
               title="Uganda office map"
-              className="mt-4 h-48 w-full border-0 grayscale"
+              className="mt-4 h-48 w-full rounded-xl border-0 grayscale"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Bweyogerere+Kampala+Uganda&output=embed"
+              src="https://www.google.com/maps?q=9M9F%2B986,+Kampala,+Uganda&output=embed"
             />
           </div>
         </div>

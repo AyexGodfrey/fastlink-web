@@ -11,8 +11,8 @@ const lato = Lato({
 
 export const metadata: Metadata = {
   title: {
-    default: "Fast Link International Logistics",
-    template: "%s | Fast Link",
+    default: "AMG International Logistics",
+    template: "%s | AMG",
   },
   description:
     "Procurement, sourcing, freight forwarding, customs clearance, and door-to-door logistics connecting Africa and global markets.",

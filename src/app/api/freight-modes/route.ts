@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { flimsFreightModes } from "@/lib/flims";
+import { amgimsFreightModes } from "@/lib/amgims";
 
 export const dynamic = "force-dynamic";
 
@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
       req.nextUrl.searchParams.get("originCountry") || undefined;
     const destinationCountry =
       req.nextUrl.searchParams.get("destinationCountry") || undefined;
-    const data = await flimsFreightModes(originCountry, destinationCountry);
+    const data = await amgimsFreightModes(originCountry, destinationCountry);
     return NextResponse.json({ data: data ?? [] });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Freight modes failed";
