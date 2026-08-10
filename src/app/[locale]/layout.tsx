@@ -5,6 +5,8 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { AnalyticsProvider } from "@/components/analytics/AnalyticsProvider";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildOrganizationWebsiteJsonLd } from "@/lib/seo/organization-schema";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -25,6 +27,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <AnalyticsProvider>
+        <JsonLd data={buildOrganizationWebsiteJsonLd(locale)} />
         <Header />
         <main>{children}</main>
         <Footer />

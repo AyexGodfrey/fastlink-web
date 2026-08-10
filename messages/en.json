@@ -22,7 +22,26 @@
     "ctaCalculate": "Calculate Import Cost",
     "ctaTrack": "Track Shipment",
     "featuredTitle": "Our services",
-    "featuredBody": "Move cargo and source products from <bold>China to Uganda</bold> with one accountable partner."
+    "featuredBody": "Move cargo and source products from <bold>China to Uganda</bold> with one accountable partner.",
+    "sitelinks": {
+      "title": "Quick links",
+      "track": {
+        "label": "Track your shipment",
+        "description": "Enter your tracking, order, or container number for live status."
+      },
+      "quote": {
+        "label": "Get a quote",
+        "description": "Request a freight and logistics quotation from our sales team."
+      },
+      "calculate": {
+        "label": "Calculate import cost",
+        "description": "Estimate landed cost with freight, duty, and taxes."
+      },
+      "contact": {
+        "label": "Contact us",
+        "description": "Reach our China and Uganda offices for sourcing and shipping support."
+      }
+    }
   },
   "trust": {
     "shipments": "Shipments Managed",

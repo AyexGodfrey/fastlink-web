@@ -3,11 +3,12 @@ import { services } from "@/lib/content/services";
 import { industries } from "@/lib/content/industries";
 import { financingTopics } from "@/lib/content/financing";
 import { knowledgeArticles } from "@/lib/content/knowledge";
-
-const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3200";
+import { getSiteUrl } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const locales = ["en", "zh"];
+  const base = getSiteUrl();
+  const locales = ["en", "zh"] as const;
+  const lastModified = new Date();
   const staticPaths = [
     "",
     "/services",
@@ -27,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const path of staticPaths) {
       entries.push({
         url: `${base}/${locale}${path}`,
-        lastModified: new Date(),
+        lastModified,
         changeFrequency: "weekly",
         priority: path === "" ? 1 : 0.7,
       });
@@ -35,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const s of services) {
       entries.push({
         url: `${base}/${locale}/services/${s.slug}`,
-        lastModified: new Date(),
+        lastModified,
         changeFrequency: "monthly",
         priority: 0.6,
       });
@@ -43,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const i of industries) {
       entries.push({
         url: `${base}/${locale}/industries/${i.slug}`,
-        lastModified: new Date(),
+        lastModified,
         changeFrequency: "monthly",
         priority: 0.6,
       });
@@ -51,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const f of financingTopics) {
       entries.push({
         url: `${base}/${locale}/trade-financing/${f.slug}`,
-        lastModified: new Date(),
+        lastModified,
         changeFrequency: "monthly",
         priority: 0.6,
       });
@@ -59,7 +60,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const a of knowledgeArticles) {
       entries.push({
         url: `${base}/${locale}/knowledge/${a.slug}`,
-        lastModified: new Date(),
+        lastModified,
         changeFrequency: "monthly",
         priority: 0.5,
       });

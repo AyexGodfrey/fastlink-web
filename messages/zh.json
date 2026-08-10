@@ -22,7 +22,26 @@
     "ctaCalculate": "计算进口成本",
     "ctaTrack": "追踪货物",
     "featuredTitle": "我们的服务",
-    "featuredBody": "货运与采购，从<bold>中国到乌干达</bold>，由同一可靠伙伴负责到底。"
+    "featuredBody": "货运与采购，从<bold>中国到乌干达</bold>，由同一可靠伙伴负责到底。",
+    "sitelinks": {
+      "title": "快捷入口",
+      "track": {
+        "label": "追踪您的货物",
+        "description": "输入追踪号、订单号或集装箱号，查看实时状态。"
+      },
+      "quote": {
+        "label": "获取报价",
+        "description": "向销售团队申请货运与物流报价。"
+      },
+      "calculate": {
+        "label": "计算进口成本",
+        "description": "估算含运费、关税与税费的落地成本。"
+      },
+      "contact": {
+        "label": "联系我们",
+        "description": "联系中国与乌干达办公室，获取寻源与物流支持。"
+      }
+    }
   },
   "trust": {
     "shipments": "管理货运",

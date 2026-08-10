@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
+import { HomeSitelinks } from "@/components/home/HomeSitelinks";
 import { ServicesLiveTabs } from "@/components/services/ServicesLiveTabs";
 import { IndustriesLiveTabs } from "@/components/industries/IndustriesLiveTabs";
 import { Reveal } from "@/components/motion/Reveal";
@@ -22,6 +23,7 @@ export default async function HomePage({
     <>
       <Hero />
       <TrustStrip />
+      <HomeSitelinks />
 
       <section className="container-site py-16 md:py-24">
         <Reveal>
@@ -65,7 +67,6 @@ export default async function HomePage({
           </Link>
         </Reveal>
       </section>
-
     </>
   );
 }
