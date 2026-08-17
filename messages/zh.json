@@ -17,6 +17,8 @@
   },
   "home": {
     "headline": "以采购与物流卓越连接全球市场",
+    "metaTitle": "AMG 国际物流",
+    "metaDescription": "寻源、采购、货运代理、清关及门到门物流，连接非洲与全球市场。",
     "sub": "提供寻源、采购管理、供应商审核、货运代理、清关及门到门交付服务。",
     "ctaQuote": "获取报价",
     "ctaCalculate": "计算进口成本",
@@ -60,6 +62,8 @@
   },
   "track": {
     "title": "货物追踪",
+    "metaTitle": "追踪您的货物",
+    "metaDescription": "通过追踪号、订单号或集装箱号查询 AMG 国际物流货物状态。",
     "subtitle": "输入追踪号、订单号或集装箱号。",
     "placeholder": "追踪号 / 订单号 / 集装箱号",
     "search": "查询",
@@ -71,6 +75,8 @@
   },
   "calculate": {
     "title": "进口成本计算器",
+    "metaTitle": "计算进口成本",
+    "metaDescription": "基于 AMG 实时运费卡估算运费、关税与税费。",
     "subtitle": "基于 AMG 实时运费与关税数据估算进口成本。",
     "leadTitle": "解锁估算结果",
     "leadBody": "填写联系方式以查看明细，我们的团队可据此出具正式报价。",
@@ -89,6 +95,10 @@
     "weightLabel": "总重量",
     "weightUnit": "公斤",
     "freightLabel": "运费",
+    "fuelLabel": "燃油附加费",
+    "handlingLabel": "操作费",
+    "documentationLabel": "文件费",
+    "clearanceLabel": "清关费",
     "customsDutyLabel": "关税",
     "taxesLabel": "税费（估算）",
     "transitLabel": "时效",
@@ -116,18 +126,24 @@
   },
   "quote": {
     "title": "获取报价",
+    "metaTitle": "获取报价",
+    "metaDescription": "向 AMG 国际物流申请货运与物流报价。",
     "subtitle": "告诉我们您的需求，销售团队将提供定制报价。",
     "submit": "提交请求",
     "success": "感谢您。请求已发送至销售团队。"
   },
   "sourcing": {
     "title": "产品采购门户",
+    "metaTitle": "产品采购",
+    "metaDescription": "通过核验供应商、工厂审核与端到端物流启动采购项目。",
     "subtitle": "通过核验供应商、工厂审核与端到端物流启动采购项目。",
     "submit": "启动采购项目",
     "success": "您的采购项目请求已收到。"
   },
   "contact": {
     "title": "联系我们",
+    "metaTitle": "联系我们",
+    "metaDescription": "联系 AMG 国际物流广州与坎帕拉办公室。",
     "subtitle": "联系广州与坎帕拉团队。",
     "hours": "营业时间",
     "hoursValue": "周一至周六 9:00–18:00（当地时间）",
@@ -204,6 +220,9 @@
     "learnMore": "了解更多",
     "back": "返回",
     "loading": "加载中…",
-    "error": "出错了，请重试。"
+    "error": "出错了，请重试。",
+    "apiUnavailable": "AMGIMS 暂时无法连接，请几分钟后重试。",
+    "noFreightModes": "暂无可用运输方式",
+    "retry": "重试"
   }
 }

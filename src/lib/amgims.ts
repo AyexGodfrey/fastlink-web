@@ -1,7 +1,11 @@
 const AMGIMS_API_URL =
-  process.env.AMGIMS_API_URL || "http://127.0.0.1:4000/api/v1";
-const AMGIMS_SITE_API_KEY = process.env.AMGIMS_SITE_API_KEY || "";
-const AMGIMS_COMPANY_CODE = process.env.AMGIMS_COMPANY_CODE || "AMG";
+  process.env.AMGIMS_API_URL?.trim() || "http://127.0.0.1:4000/api/v1";
+const AMGIMS_SITE_API_KEY = process.env.AMGIMS_SITE_API_KEY?.trim() || "";
+const AMGIMS_COMPANY_CODE =
+  process.env.AMGIMS_COMPANY_CODE?.trim() || "AMG";
+
+export const AMGIMS_UNAVAILABLE =
+  "AMGIMS is temporarily unavailable. Tracking and import-cost estimates cannot run until the API is back online.";
 
 type AmgimsEnvelope<T> = {
   success?: boolean;
@@ -20,7 +24,12 @@ function headers(): HeadersInit {
 }
 
 function errorMessage(value: unknown, fallback: string): string {
-  if (typeof value === "string" && value.trim()) return value;
+  if (typeof value === "string" && value.trim()) {
+    if (/<\s*html/i.test(value) || /Bad Gateway/i.test(value)) {
+      return AMGIMS_UNAVAILABLE;
+    }
+    return value;
+  }
   if (Array.isArray(value)) {
     const parts = value
       .map((item) => errorMessage(item, ""))
@@ -30,9 +39,11 @@ function errorMessage(value: unknown, fallback: string): string {
   if (value && typeof value === "object") {
     const obj = value as Record<string, unknown>;
     if (typeof obj.message === "string" && obj.message.trim()) {
-      return obj.message;
+      return errorMessage(obj.message, fallback);
     }
-    if (typeof obj.error === "string" && obj.error.trim()) return obj.error;
+    if (typeof obj.error === "string" && obj.error.trim()) {
+      return errorMessage(obj.error, fallback);
+    }
   }
   return fallback;
 }
@@ -51,21 +62,33 @@ async function amgimsFetch<T>(
       if (value != null && value !== "") url.searchParams.set(key, value);
     }
   }
-  const res = await fetch(url.toString(), {
-    ...init,
-    headers: { ...headers(), ...(init?.headers || {}) },
-    cache: "no-store",
-  });
+  let res: Response;
+  try {
+    res = await fetch(url.toString(), {
+      ...init,
+      headers: { ...headers(), ...(init?.headers || {}) },
+      cache: "no-store",
+    });
+  } catch {
+    throw new Error(AMGIMS_UNAVAILABLE);
+  }
   const text = await res.text();
   let json = {} as AmgimsEnvelope<T>;
   try {
-    json = text ? (JSON.parse(text) as AmgimsEnvelope<T>) : ({} as AmgimsEnvelope<T>);
+    json = text
+      ? (JSON.parse(text) as AmgimsEnvelope<T>)
+      : ({} as AmgimsEnvelope<T>);
   } catch {
     throw new Error(
-      `AMGIMS returned non-JSON (${res.status}): ${text.slice(0, 120)}`,
+      res.status >= 500
+        ? AMGIMS_UNAVAILABLE
+        : `AMGIMS returned non-JSON (${res.status}): ${text.slice(0, 120)}`,
     );
   }
   if (!res.ok) {
+    if (res.status >= 500 || /<\s*html/i.test(text)) {
+      throw new Error(AMGIMS_UNAVAILABLE);
+    }
     throw new Error(
       errorMessage(
         json.message ?? json.error,

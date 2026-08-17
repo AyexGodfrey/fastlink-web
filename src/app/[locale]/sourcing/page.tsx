@@ -1,5 +1,22 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LeadForm } from "@/components/forms/LeadForm";
+import { pageMetadata } from "@/lib/seo/page-meta";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "sourcing" });
+  return pageMetadata({
+    locale,
+    path: "/sourcing",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  });
+}
 
 export default async function SourcingPage({
   params,

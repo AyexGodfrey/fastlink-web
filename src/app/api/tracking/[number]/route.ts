@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { amgimsTrack } from "@/lib/amgims";
+import { AMGIMS_UNAVAILABLE, amgimsTrack } from "@/lib/amgims";
 
 export async function GET(
   _req: NextRequest,
@@ -11,6 +11,10 @@ export async function GET(
     return NextResponse.json({ data });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Tracking failed";
-    return NextResponse.json({ error: message }, { status: 404 });
+    const unavailable = message === AMGIMS_UNAVAILABLE;
+    return NextResponse.json(
+      { error: message },
+      { status: unavailable ? 502 : 404 },
+    );
   }
 }

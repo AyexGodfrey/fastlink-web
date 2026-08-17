@@ -164,6 +164,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ data: lead });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Lead submission failed";
-    return NextResponse.json({ error: message }, { status: 400 });
+    const unavailable = /temporarily unavailable/i.test(message);
+    return NextResponse.json(
+      { error: message },
+      { status: unavailable ? 502 : 400 },
+    );
   }
 }

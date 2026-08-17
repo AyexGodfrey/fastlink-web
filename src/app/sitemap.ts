@@ -5,6 +5,8 @@ import { financingTopics } from "@/lib/content/financing";
 import { knowledgeArticles } from "@/lib/content/knowledge";
 import { getSiteUrl } from "@/lib/site-url";
 
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
   const locales = ["en", "zh"] as const;

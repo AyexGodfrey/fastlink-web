@@ -17,6 +17,8 @@
   },
   "home": {
     "headline": "Connecting Global Markets Through Procurement and Logistics Excellence",
+    "metaTitle": "AMG International Logistics",
+    "metaDescription": "Sourcing, procurement, freight forwarding, customs clearance, and door-to-door logistics connecting Africa and global markets.",
     "sub": "Sourcing, procurement, supplier verification, freight forwarding, customs clearance, and door-to-door delivery worldwide.",
     "ctaQuote": "Request a Quote",
     "ctaCalculate": "Calculate Import Cost",
@@ -60,6 +62,8 @@
   },
   "track": {
     "title": "Track a shipment",
+    "metaTitle": "Track your shipment",
+    "metaDescription": "Track AMG International Logistics shipments by tracking number, order number, or container number.",
     "subtitle": "Enter your tracking, order, or container number.",
     "placeholder": "Tracking / order / container number",
     "search": "Track",
@@ -71,6 +75,8 @@
   },
   "calculate": {
     "title": "Import cost calculator",
+    "metaTitle": "Calculate import cost",
+    "metaDescription": "Estimate freight, customs duty, and taxes for imports with live AMG rate cards.",
     "subtitle": "Get an indicative import-cost estimate powered by live AMG rate cards and tariffs.",
     "leadTitle": "Unlock your estimate",
     "leadBody": "Share your details to view the full breakdown. Our team can refine this into a formal quotation.",
@@ -89,6 +95,10 @@
     "weightLabel": "Total weight",
     "weightUnit": "kg",
     "freightLabel": "Freight",
+    "fuelLabel": "Fuel surcharge",
+    "handlingLabel": "Handling",
+    "documentationLabel": "Documentation",
+    "clearanceLabel": "Customs clearance",
     "customsDutyLabel": "Customs duty",
     "taxesLabel": "Taxes (estimated)",
     "transitLabel": "Transit",
@@ -116,18 +126,24 @@
   },
   "quote": {
     "title": "Request a quote",
+    "metaTitle": "Get a quote",
+    "metaDescription": "Request a freight and logistics quotation from AMG International Logistics.",
     "subtitle": "Tell us what you need — our sales team responds with a tailored quotation.",
     "submit": "Submit request",
     "success": "Thank you. Your request has been sent to our sales team."
   },
   "sourcing": {
     "title": "Product sourcing portal",
+    "metaTitle": "Product sourcing",
+    "metaDescription": "Start a sourcing project with verified suppliers, factory audits, and end-to-end logistics from AMG.",
     "subtitle": "Start a sourcing project with verified suppliers, factory audits, and end-to-end logistics.",
     "submit": "Start sourcing project",
     "success": "Your sourcing project request has been received."
   },
   "contact": {
     "title": "Contact us",
+    "metaTitle": "Contact us",
+    "metaDescription": "Contact AMG International Logistics offices in Guangzhou, China and Kampala, Uganda.",
     "subtitle": "Speak with our teams in Guangzhou and Kampala.",
     "hours": "Business hours",
     "hoursValue": "Mon–Sat, 9:00–18:00 (local time)",
@@ -204,6 +220,9 @@
     "learnMore": "Learn more",
     "back": "Back",
     "loading": "Loading…",
-    "error": "Something went wrong. Please try again."
+    "error": "Something went wrong. Please try again.",
+    "apiUnavailable": "AMGIMS is temporarily unavailable. Please try again in a few minutes.",
+    "noFreightModes": "No active freight modes",
+    "retry": "Retry"
   }
 }

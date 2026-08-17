@@ -3,8 +3,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { getArticle, knowledgeArticles } from "@/lib/content/knowledge";
+import { getSiteUrl } from "@/lib/site-url";
 
-const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3200";
+const base = getSiteUrl();
 
 export function generateStaticParams() {
   return knowledgeArticles.flatMap((a) => [

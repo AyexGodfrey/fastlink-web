@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { amgimsImportCost } from "@/lib/amgims";
+import { AMGIMS_UNAVAILABLE, amgimsImportCost } from "@/lib/amgims";
 
 export async function POST(req: NextRequest) {
   try {
@@ -8,6 +8,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ data });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Calculation failed";
-    return NextResponse.json({ error: message }, { status: 400 });
+    const unavailable = message === AMGIMS_UNAVAILABLE;
+    return NextResponse.json(
+      { error: message },
+      { status: unavailable ? 502 : 400 },
+    );
   }
 }

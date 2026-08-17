@@ -1,6 +1,23 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { TrackPageClient } from "@/components/track/TrackPageClient";
+import { pageMetadata } from "@/lib/seo/page-meta";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "track" });
+  return pageMetadata({
+    locale,
+    path: "/track",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  });
+}
 
 export default async function TrackPage({
   params,

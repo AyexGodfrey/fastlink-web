@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { pageMetadata } from "@/lib/seo/page-meta";
 import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { HomeSitelinks } from "@/components/home/HomeSitelinks";
@@ -6,6 +8,21 @@ import { ServicesLiveTabs } from "@/components/services/ServicesLiveTabs";
 import { IndustriesLiveTabs } from "@/components/industries/IndustriesLiveTabs";
 import { Reveal } from "@/components/motion/Reveal";
 import { Link } from "@/i18n/navigation";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home" });
+  return pageMetadata({
+    locale,
+    path: "",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  });
+}
 
 export default async function HomePage({
   params,

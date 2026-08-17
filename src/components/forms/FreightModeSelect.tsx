@@ -46,6 +46,7 @@ export function FreightModeSelect({
   const [modes, setModes] = useState<FreightModeOption[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [reloadKey, setReloadKey] = useState(0);
   const [internalValue, setInternalValue] = useState(defaultValue || "");
   const value = controlledValue ?? internalValue;
 
@@ -69,7 +70,7 @@ export function FreightModeSelect({
           cache: "no-store",
         });
         const json = await readJson(res);
-        if (!res.ok) throw new Error(json.error || "Failed to load modes");
+        if (!res.ok) throw new Error(json.error || tc("apiUnavailable"));
         if (cancelled) return;
         const next: FreightModeOption[] = Array.isArray(json.data)
           ? json.data
@@ -99,7 +100,7 @@ export function FreightModeSelect({
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- reload when lane changes
-  }, [originCountry, destinationCountry, defaultValue, tc]);
+  }, [originCountry, destinationCountry, defaultValue, tc, reloadKey]);
 
   return (
     <>
@@ -114,7 +115,7 @@ export function FreightModeSelect({
       >
         {loading && <option value="">{tc("loading")}</option>}
         {!loading && modes.length === 0 && (
-          <option value="">No active freight modes</option>
+          <option value="">{tc("noFreightModes")}</option>
         )}
         {!loading &&
           modes.map((m) => (
@@ -123,7 +124,18 @@ export function FreightModeSelect({
             </option>
           ))}
       </select>
-      {error && <p className="mt-1 text-xs text-red-700">{error}</p>}
+      {error && (
+        <p className="mt-1 text-xs text-red-700">
+          {error}{" "}
+          <button
+            type="button"
+            className="font-semibold underline"
+            onClick={() => setReloadKey((n) => n + 1)}
+          >
+            {tc("retry")}
+          </button>
+        </p>
+      )}
     </>
   );
 }

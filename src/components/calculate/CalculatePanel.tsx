@@ -456,6 +456,10 @@ export function CalculatePanel() {
     const type = (l.chargeType || "").toUpperCase();
     return type === "TAX" || type === "DUTY";
   });
+  const extraLogistics = (result?.lines || []).filter((l) => {
+    const type = (l.chargeType || "").toUpperCase();
+    return !["TAX", "DUTY", "FREIGHT", "FUEL"].includes(type);
+  });
   const totalWeightKg =
     result?.chargeableWeightKg != null && result.chargeableWeightKg > 0
       ? result.chargeableWeightKg
@@ -972,6 +976,17 @@ export function CalculatePanel() {
                   {result.estimatedFreightCost.toLocaleString()}
                 </dd>
               </div>
+              {extraLogistics.map((l, i) => (
+                <div
+                  key={`${l.chargeType}-${l.description}-${i}`}
+                  className="flex justify-between gap-4 border-b border-[color:var(--line)] pb-1"
+                >
+                  <dt>{l.description}</dt>
+                  <dd>
+                    {result.currency} {l.amount.toLocaleString()}
+                  </dd>
+                </div>
+              ))}
               <div className="border-b border-[color:var(--line)] pb-1">
                 <button
                   type="button"
