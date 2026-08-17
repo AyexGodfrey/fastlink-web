@@ -17,8 +17,8 @@
   },
   "home": {
     "headline": "以采购与物流卓越连接全球市场",
-    "metaTitle": "AMG 国际物流",
-    "metaDescription": "寻源、采购、货运代理、清关及门到门物流，连接非洲与全球市场。",
+    "metaTitle": "AMG 国际物流 | 中国—乌干达货运，广州与坎帕拉",
+    "metaDescription": "中国至乌干达寻源、货运代理与清关。办公室位于中国广州与乌干达坎帕拉。",
     "sub": "提供寻源、采购管理、供应商审核、货运代理、清关及门到门交付服务。",
     "ctaQuote": "获取报价",
     "ctaCalculate": "计算进口成本",
@@ -142,9 +142,10 @@
   },
   "contact": {
     "title": "联系我们",
-    "metaTitle": "联系我们",
-    "metaDescription": "联系 AMG 国际物流广州与坎帕拉办公室。",
+    "metaTitle": "联系 AMG 国际物流（坎帕拉与广州）",
+    "metaDescription": "AMG 国际物流中国与乌干达办公室——广州寻源、坎帕拉货运与清关。并非尼日利亚拉各斯的 AMG Logistics。",
     "subtitle": "联系广州与坎帕拉团队。",
+    "disambiguation": "AMG 国际物流是中国—乌干达寻源与货运公司，办公室位于广州与坎帕拉。我们并非尼日利亚拉各斯的 AMG Logistics。",
     "hours": "营业时间",
     "hoursValue": "周一至周六 9:00–18:00（当地时间）",
     "formTitle": "发送消息",

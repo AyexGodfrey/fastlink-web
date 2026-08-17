@@ -15,12 +15,13 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "AMG International Logistics",
-    template: "%s | AMG",
+    default:
+      "AMG International Logistics | China–Uganda Freight, Kampala & Guangzhou",
+    template: "%s | AMG International Logistics",
   },
   description:
-    "Procurement, sourcing, freight forwarding, customs clearance, and door-to-door logistics connecting Africa and global markets.",
-  applicationName: "AMG",
+    "China-to-Uganda sourcing, freight forwarding, and customs clearance. Offices in Guangzhou, China and Kampala, Uganda.",
+  applicationName: "AMG International Logistics",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -35,10 +36,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "AMG",
-    title: "AMG International Logistics",
+    siteName: "AMG International Logistics",
+    title:
+      "AMG International Logistics | China–Uganda Freight, Kampala & Guangzhou",
     description:
-      "Procurement, sourcing, freight forwarding, customs clearance, and door-to-door logistics connecting Africa and global markets.",
+      "China-to-Uganda sourcing, freight forwarding, and customs clearance. Offices in Guangzhou, China and Kampala, Uganda.",
     url: siteUrl,
   },
 };

@@ -32,6 +32,9 @@ export default async function ContactPage({
     <div className="container-site py-14 md:py-20">
       <h1 className="section-title">{t("title")}</h1>
       <p className="section-sub">{t("subtitle")}</p>
+      <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[color:var(--muted)]">
+        {t("disambiguation")}
+      </p>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-2">
         <div className="space-y-8">

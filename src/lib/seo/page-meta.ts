@@ -27,7 +27,7 @@ export function pageMetadata(opts: {
       title: opts.title,
       description: opts.description,
       url: canonical,
-      siteName: "AMG",
+      siteName: "AMG International Logistics",
       locale: opts.locale === "zh" ? "zh_CN" : "en_US",
       type: "website",
     },
