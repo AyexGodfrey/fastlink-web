@@ -64,7 +64,7 @@ export function aggregateGroup(
     0,
   );
   const totalCbm = lines.reduce((s, p) => s + totalCbmForLine(p), 0);
-  const dims = dimsFromTotalCbm(totalCbm > 0 ? totalCbm : 0.001);
+  const dims = dimsFromTotalCbm(totalCbm);
   const hs = lines.find((p) => p.hsCode.trim())?.hsCode.trim();
 
   return {

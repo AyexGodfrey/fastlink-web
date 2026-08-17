@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 function socialLinks() {
-  const wa = process.env.NEXT_PUBLIC_WHATSAPP || "256707469261";
+  const wa = process.env.NEXT_PUBLIC_WHATSAPP || "256795896222";
   const email =
     process.env.NEXT_PUBLIC_CONTACT_EMAIL ||
     process.env.SALES_INBOX ||
@@ -194,7 +194,7 @@ export async function Footer() {
               <p className="mt-1">
                 Gyagenda Plaza, Room 007, Bweyogerere, Kyobe Rd, Kampala, Uganda
               </p>
-              <p className="mt-1">+256 707 469 261</p>
+              <p className="mt-1">+256 795 896 222</p>
             </div>
           </div>
         </div>

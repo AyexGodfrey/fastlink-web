@@ -92,7 +92,7 @@ export function LeadForm({
           {successMessage}
         </p>
         <a
-          href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP || "256707469261"}`}
+          href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP || "256795896222"}`}
           className={`btn-primary ${compact ? "mt-3" : "mt-6"}`}
           target="_blank"
           rel="noreferrer"

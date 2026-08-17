@@ -953,11 +953,14 @@ export function CalculatePanel() {
               })}
             </div>
             <dl className="mt-2 space-y-1.5 text-sm">
-              {result.cbm != null && result.cbm > 0 ? (
+              {result.cbm != null ? (
                 <div className="flex justify-between gap-4 border-b border-[color:var(--line)] pb-1">
                   <dt>{t("cbmLabel")}</dt>
                   <dd>
-                    {result.cbm.toLocaleString()} {t("cbmUnit")}
+                    {result.cbm.toLocaleString(undefined, {
+                      maximumFractionDigits: 3,
+                    })}{" "}
+                    {t("cbmUnit")}
                   </dd>
                 </div>
               ) : null}

@@ -62,7 +62,7 @@ export default async function ContactPage({
               Gyagenda Plaza, Room 007, Bweyogerere, Kyobe Rd, Kampala, Uganda
             </p>
             <p className="mt-2 text-sm text-[color:var(--navy)]">
-              +256 707 469 261 · +86 136 6053 4638
+              +256 795 896 222 · +86 136 6053 4638
             </p>
             <p className="mt-4 text-sm">
               <span className="font-semibold text-[color:var(--navy)]">
