@@ -1,13 +1,32 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { getIndustry, industries } from "@/lib/content/industries";
+import { pageMetadata } from "@/lib/seo/page-meta";
 
 export function generateStaticParams() {
   return industries.flatMap((i) => [
     { locale: "en", slug: i.slug },
     { locale: "zh", slug: i.slug },
   ]);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const industry = getIndustry(slug);
+  if (!industry) return {};
+  const zh = locale === "zh";
+  return pageMetadata({
+    locale,
+    path: `/industries/${slug}`,
+    title: zh ? industry.titleZh : industry.title,
+    description: zh ? industry.summaryZh : industry.summary,
+  });
 }
 
 export default async function IndustryDetailPage({

@@ -3,9 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { getArticle, knowledgeArticles } from "@/lib/content/knowledge";
-import { getSiteUrl } from "@/lib/site-url";
-
-const base = getSiteUrl();
+import { pageMetadata } from "@/lib/seo/page-meta";
 
 export function generateStaticParams() {
   return knowledgeArticles.flatMap((a) => [
@@ -23,16 +21,12 @@ export async function generateMetadata({
   const article = getArticle(slug);
   if (!article) return {};
   const zh = locale === "zh";
-  return {
+  return pageMetadata({
+    locale,
+    path: `/knowledge/${slug}`,
     title: zh ? article.titleZh : article.title,
     description: zh ? article.excerptZh : article.excerpt,
-    alternates: {
-      languages: {
-        en: `${base}/en/knowledge/${slug}`,
-        zh: `${base}/zh/knowledge/${slug}`,
-      },
-    },
-  };
+  });
 }
 
 function firstParagraph(text: string): string {

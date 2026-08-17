@@ -1,13 +1,32 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { getService, services } from "@/lib/content/services";
+import { pageMetadata } from "@/lib/seo/page-meta";
 
 export function generateStaticParams() {
   return services.flatMap((s) => [
     { locale: "en", slug: s.slug },
     { locale: "zh", slug: s.slug },
   ]);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const service = getService(slug);
+  if (!service) return {};
+  const zh = locale === "zh";
+  return pageMetadata({
+    locale,
+    path: `/services/${slug}`,
+    title: zh ? service.titleZh : service.title,
+    description: zh ? service.summaryZh : service.summary,
+  });
 }
 
 export default async function ServiceDetailPage({

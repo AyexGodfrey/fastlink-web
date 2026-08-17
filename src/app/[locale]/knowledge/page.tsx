@@ -1,5 +1,22 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { KnowledgeSearch } from "@/components/knowledge/KnowledgeSearch";
+import { pageMetadata } from "@/lib/seo/page-meta";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "knowledge" });
+  return pageMetadata({
+    locale,
+    path: "/knowledge",
+    title: t("title"),
+    description: t("subtitle"),
+  });
+}
 
 export default async function KnowledgePage({
   params,

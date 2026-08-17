@@ -9,7 +9,8 @@ export function pageMetadata(opts: {
   description: string;
 }): Metadata {
   const base = getSiteUrl();
-  const suffix = opts.path || "";
+  const trimmed = (opts.path || "").replace(/^\/+|\/+$/g, "");
+  const suffix = trimmed ? `/${trimmed}` : "";
   const canonical = `${base}/${opts.locale}${suffix}`;
   return {
     title: opts.title,

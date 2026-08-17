@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
@@ -5,12 +6,30 @@ import {
   financingTopics,
   getFinancingTopic,
 } from "@/lib/content/financing";
+import { pageMetadata } from "@/lib/seo/page-meta";
 
 export function generateStaticParams() {
   return financingTopics.flatMap((topic) => [
     { locale: "en", slug: topic.slug },
     { locale: "zh", slug: topic.slug },
   ]);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const topic = getFinancingTopic(slug);
+  if (!topic) return {};
+  const zh = locale === "zh";
+  return pageMetadata({
+    locale,
+    path: `/trade-financing/${slug}`,
+    title: zh ? topic.titleZh : topic.title,
+    description: zh ? topic.summaryZh : topic.summary,
+  });
 }
 
 export default async function FinancingTopicPage({

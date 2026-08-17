@@ -1,5 +1,22 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { IndustriesLiveTabs } from "@/components/industries/IndustriesLiveTabs";
+import { pageMetadata } from "@/lib/seo/page-meta";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "industries" });
+  return pageMetadata({
+    locale,
+    path: "/industries",
+    title: t("title"),
+    description: t("subtitle"),
+  });
+}
 
 export default async function IndustriesPage({
   params,

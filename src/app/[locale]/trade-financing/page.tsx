@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Reveal } from "@/components/motion/Reveal";
 import { financingTopics } from "@/lib/content/financing";
+import { pageMetadata } from "@/lib/seo/page-meta";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "financing" });
+  return pageMetadata({
+    locale,
+    path: "/trade-financing",
+    title: t("title"),
+    description: t("subtitle"),
+  });
+}
 
 const icons: Record<string, ReactNode> = {
   "import-po-financing": (
